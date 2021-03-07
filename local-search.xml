@@ -23,19 +23,6 @@
   
   
   <entry>
-    <title>【React】antd自定义配置后报错</title>
-    <link href="/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/"/>
-    <url>/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/</url>
-    
-    <content type="html"><![CDATA[<h1 id="【React】create-react-app项目使用antd自定义配置后，启动项目报错"><a href="#【React】create-react-app项目使用antd自定义配置后，启动项目报错" class="headerlink" title="【React】create-react-app项目使用antd自定义配置后，启动项目报错"></a>【React】create-react-app项目使用antd自定义配置后，启动项目报错</h1><h3 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h3><p>Error: Cannot find module ‘react-scripts/package.json”</p><p><img src="/images/antd1.png"></p><h3 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h3><p>缺少react-script类库文件</p><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>安装react-script</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">yarn <span class="hljs-keyword">add </span>react-<span class="hljs-keyword">script </span>-dev<br></code></pre></td></tr></table></figure><p><img src="/images/antd2.png"></p><p>安装完成可以正常启动</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>【React】yarn eject报错</title>
     <link href="/2021/03/05/%E3%80%90React%E3%80%91yarn%20eject%E6%8A%A5%E9%94%99/"/>
     <url>/2021/03/05/%E3%80%90React%E3%80%91yarn%20eject%E6%8A%A5%E9%94%99/</url>
@@ -43,6 +30,12 @@
     <content type="html"><![CDATA[<h1 id="【React】yarn-eject报错"><a href="#【React】yarn-eject报错" class="headerlink" title="【React】yarn eject报错"></a>【React】yarn eject报错</h1><h3 id="报错问题："><a href="#报错问题：" class="headerlink" title="报错问题："></a>报错问题：</h3><p>create-react-app项目使用yarn eject暴露webpack相关配置时，报错</p><p><img src="/images/yarn-eject.png"></p><h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>提交git</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m -xxx<br>复制代码<br></code></pre></td></tr></table></figure><p>提交后问题解决</p>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+    </tags>
     
   </entry>
   
@@ -57,6 +50,31 @@
     
     
     
+    <tags>
+      
+      <tag>React</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【React】antd自定义配置后报错</title>
+    <link href="/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/"/>
+    <url>/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/</url>
+    
+    <content type="html"><![CDATA[<h1 id="【React】create-react-app项目使用antd自定义配置后，启动项目报错"><a href="#【React】create-react-app项目使用antd自定义配置后，启动项目报错" class="headerlink" title="【React】create-react-app项目使用antd自定义配置后，启动项目报错"></a>【React】create-react-app项目使用antd自定义配置后，启动项目报错</h1><h3 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h3><p>Error: Cannot find module ‘react-scripts/package.json”</p><p><img src="/images/antd1.png"></p><h3 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h3><p>缺少react-script类库文件</p><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>安装react-script</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">yarn <span class="hljs-keyword">add </span>react-<span class="hljs-keyword">script </span>-dev<br></code></pre></td></tr></table></figure><p><img src="/images/antd2.png"></p><p>安装完成可以正常启动</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>React</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -69,6 +87,12 @@
     <content type="html"><![CDATA[<h1 id="【hexo】–hexo-clean命令报错"><a href="#【hexo】–hexo-clean命令报错" class="headerlink" title="【hexo】–hexo clean命令报错"></a>【hexo】–hexo clean命令报错</h1><h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><p>在使用hexo clean命令时发生错误，报错信息如下</p><p>FATAL YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key (107:16)</p><p><img src="/images/hexo-clean.png"></p><p>发现所有hexo命令都会报此错误，如hexo g,hexo d。</p><h3 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h3><p>配置hexo的_config.yml文件时，冒号后面少了空格，或者重复写了键。我就是重复写了language键。</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>添加上空格或者删除重复的键。</p>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
     
   </entry>
   
