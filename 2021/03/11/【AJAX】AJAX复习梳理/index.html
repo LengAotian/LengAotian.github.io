@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      共1.2k 字
+      共1.7k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       预计阅读时长
-      17
+      25
        分钟
     </span>
   
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月13日 凌晨
+                  本文最后更新于：2021年3月13日 上午
                 
               </p>
             
@@ -338,9 +338,35 @@
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//后端代码</span><br>app.all(<span class="hljs-string">&#x27;url&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">request,response</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> data = &#123;<br>        exist:<span class="hljs-number">1</span>,<br>        msg:<span class="hljs-string">&#x27;存在&#x27;</span><br>    &#125;;<br>    <span class="hljs-comment">//转化为字符型</span><br>    <span class="hljs-keyword">let</span> str = <span class="hljs-built_in">JSON</span>.stringfy(data);<br>    <span class="hljs-comment">//返回结果,返回一个js执行代码</span><br>    response.end(<span class="hljs-string">`handle(<span class="hljs-subst">$&#123;str&#125;</span>)`</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h4 id="jQuery写jsonp"><a href="#jQuery写jsonp" class="headerlink" title="jQuery写jsonp"></a>jQuery写jsonp</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//下次一定</span><br></code></pre></td></tr></table></figure>
+<h4 id="jQuery写jsonp"><a href="#jQuery写jsonp" class="headerlink" title="jQuery写jsonp"></a>jQuery写jsonp</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    用户名：&lt;input type=<span class="hljs-string">&quot;text&quot;</span> id=<span class="hljs-string">&quot;username&quot;</span>&gt;<br>	&lt;div id=<span class="hljs-string">&quot;reslut&quot;</span>&gt;&lt;/div&gt;<br>    &lt;script&gt;<br>       $(<span class="hljs-string">&quot;button&quot;</span>).eq(<span class="hljs-number">0</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-comment">//getJSON() 方法使用 AJAX 的 HTTP GET 请求获取 JSON 数据。</span><br>        $.getJSON(<span class="hljs-string">&#x27;url&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>            $.(<span class="hljs-string">&quot;#result&quot;</span>).html(<span class="hljs-string">`</span><br><span class="hljs-string">				你好哈哈哈哈`</span>)<br>        &#125;)<br>    &#125;)<br>    &lt;/script&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//下次再说</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//后端代码</span><br>app.all(<span class="hljs-string">&#x27;url&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">request,response</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> data = &#123;<br>        exist:<span class="hljs-number">1</span>,<br>        msg:<span class="hljs-string">&#x27;存在&#x27;</span><br>    &#125;;<br>    <span class="hljs-comment">//转化为字符型</span><br>    <span class="hljs-keyword">let</span> str = <span class="hljs-built_in">JSON</span>.stringfy(data);<br>    <span class="hljs-comment">//接受回调函数jquery的回调函数</span><br>    <span class="hljs-keyword">let</span> cd = request.query.callback;<br>    <span class="hljs-comment">//返回结果,返回一个js执行代码</span><br>    response.end(<span class="hljs-string">`<span class="hljs-subst">$&#123;cd&#125;</span>(<span class="hljs-subst">$&#123;str&#125;</span>)`</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>jQuery扩展，发送ajax请求</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$.ajax&#123;<br>  url:<span class="hljs-string">&quot;&quot;</span>,<br>  type:<span class="hljs-string">&quot;&quot;</span>,<br>  datatype:<span class="hljs-string">&quot;&quot;</span>,<br>  data:<span class="hljs-string">&quot;&quot;</span>,<br>  success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">message</span>)</span>&#123;<br>  &#125;<br>  error:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>  &#125;    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h3><blockquote>
+<p>CORS(Cross-Origin Resource Sharing)，跨域资源共享。</p>
+<p>官方.</p>
+<p>不需要在客户端做任何特殊的操作，完全在服务器中进行处理.</p>
+<p>支持get和l post 请求。</p>
+<p>新增了一组HTTP首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。</p>
+</blockquote>
+<blockquote>
+<p>工作原理：</p>
+<p>通过设置一个响应头来告诉浏览器，该请求允许跨域，浏览器收到该响应以后就会对响应放行。</p>
+</blockquote>
+<blockquote>
+<p>CORS的使用</p>
+<p>服务器端的设置:<br>router.get(“/testAJAX”, function (req , res){}</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;body&gt;<br>    用户名：&lt;input type=<span class="hljs-string">&quot;text&quot;</span> id=<span class="hljs-string">&quot;username&quot;</span>&gt;<br>	&lt;div id=<span class="hljs-string">&quot;reslut&quot;</span>&gt;&lt;/div&gt;<br>    &lt;script&gt;<br>      <span class="hljs-keyword">const</span> btn = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>);<br>btn.onclick = =<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">const</span> x = <span class="hljs-keyword">new</span> XMLHttpRequst();<br>    x.open(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-string">&#x27;url&#x27;</span>);<br>    x.send();<br>    x.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(x.readyState === <span class="hljs-number">4</span>)&#123;<br>            <span class="hljs-keyword">if</span>(x.status &gt;=<span class="hljs-number">200</span> &amp;&amp; x.status &lt; <span class="hljs-number">300</span>)&#123;<br>                <span class="hljs-built_in">console</span>.log(x.response);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <br>&#125;<br>    &lt;/script&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//后端代码</span><br>app.all(<span class="hljs-string">&#x27;url&#x27;</span>,(request,response)=&gt;&#123;<br>    <span class="hljs-comment">//允许跨域</span><br>    response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>,<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-comment">//允许自定义响应头</span><br>    response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Headers&quot;</span>,<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-comment">//允许任何方式发送请求</span><br>    response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Method&quot;</span>,<span class="hljs-string">&quot;*&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 
             </div>
