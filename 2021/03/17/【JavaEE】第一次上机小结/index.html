@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="记录学习 分享交流">
+  
+  <meta name="author" content="LengAotian">
+  <meta name="keywords" content="">
+  
+  <title>【JavaEE】第一次上机小结 - 冷傲天的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lengat.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>冷傲天的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【JavaEE】第一次上机小结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      LengAotian
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-17 19:06" pubdate>
+        2021年3月17日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      共2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      预计阅读时长
+      30
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【JavaEE】第一次上机小结</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年3月17日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="【JavaEE】第一次上机小结"><a href="#【JavaEE】第一次上机小结" class="headerlink" title="【JavaEE】第一次上机小结"></a>【JavaEE】第一次上机小结</h1><h2 id="一、自行搭建开发环境，并已配置好环境变量"><a href="#一、自行搭建开发环境，并已配置好环境变量" class="headerlink" title="一、自行搭建开发环境，并已配置好环境变量"></a>一、自行搭建开发环境，并已配置好环境变量</h2><ol>
+<li>JDK：1.8.0_241</li>
+<li>Tomcat：9.0.43</li>
+<li>Maven：3.6.3</li>
+</ol>
+<p><img src="/images/java11.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java13.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java12.png" srcset="/img/loading.gif"></p>
+<h2 id="二、参考老师的war包时遇到的问题"><a href="#二、参考老师的war包时遇到的问题" class="headerlink" title="二、参考老师的war包时遇到的问题"></a>二、参考老师的war包时遇到的问题</h2><h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p><strong>问题描述</strong>：导入war包时，没有warfile选项</p>
+<p><strong>解决思路和方法</strong>：首先怀疑tomcat是否配置成功，检查后发现配置上了的。然后查阅了百度以及询问了有相同问题的同学，最后找到了原因，原来是缺少了相关插件，于是安装插件。</p>
+<p>1、Help –&gt; Install New Software</p>
+<p><img src="/images/java14.png" srcset="/img/loading.gif"></p>
+<p>2、选择一个路径</p>
+<p><img src="/images/java15.png" srcset="/img/loading.gif"></p>
+<p>3、选择Web,XML…选项安装，时间可能会有点久。</p>
+<p><img src="/images/java16.png" srcset="/img/loading.gif"></p>
+<p>4、重启解决。</p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p><strong>问题描述</strong>：导入war包之后报错：找不到Servlet包。</p>
+<p><img src="/images/java17.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java18.png" srcset="/img/loading.gif"></p>
+<p><strong>解决思路与方法</strong>：开始是想通过导入jar包来解决，但是又询问了其他同学，都没有出现这种情况，因为是同一个war包，所以思考是不是自己的配置出错，先查看了sts的tomcat配置，配置上的是我安装的10版本，然后又查看了jdk的8版本，然后在官网上看了一下tomcat和jdk版本的对应，发现8也能支持10的tomcat，但是10是最新版的tomcat，又发现老师的发的文件是9，就怀疑是不是自己的版本高了，于是就重新装了9的tomcat，于是解决问题。但是后来室友也报了跟我同样的错误，一开始是按照我解决的方法进行尝试，发现仍然报错，于是开始寻找新的方案，最后发现是缺少了定向的执行环境。于是添加。</p>
+<p>1.右击项目名，选择properties</p>
+<p>2.选择Targeted RunTimes</p>
+<p>3.选择你的tomcat，然后apply -&gt; ok</p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p><strong>问题描述</strong>：eclipse（并且sts）中文注解乱码</p>
+<p><img src="/images/java19.png" srcset="/img/loading.gif"></p>
+<p><strong>解决思路与方法</strong>：选择Windows–&gt;Preference–&gt;General–&gt;workspace，将Text file encoding中的属性值改为UTF-8。</p>
+<p><img src="/images/java110" srcset="/img/loading.gif"></p>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><p><strong>问题描述</strong>：idea控制台输出中文乱码</p>
+<p><img src="/images/java111.png" srcset="/img/loading.gif"></p>
+<p><strong>解决思路与方法</strong>：开始是找到一个方法，将tomcat目录下的conf文件夹的logging.properties中的java.util.logging.ConsoleHandler.encoding = UTF-8改为java.util.logging.ConsoleHandler.encoding = GBK，重启后发现tomcat启动的输出不乱码了，但是我自己System.out.print输出的乱码。于是找到一个新的解决办法：</p>
+<p>1、Help-&gt;Edit Custom VM Options</p>
+<p>2、在IntelliJIDEA界面中修改idea64.exe.vmoptions文件，添加:-Dfile.encoding=UTF-8。</p>
+<p><img src="/images/java112.png" srcset="/img/loading.gif"></p>
+<p>3、Edit Configurations-&gt;VM options</p>
+<p>4、打开tomcat配置页面，Edit Configurations。选择项目部署的tomcat，在配置项VM options文本框中输入-Dfile.encoding=UTF-8,点击Apply或OK即可。</p>
+<p><img src="/images/java113.png" srcset="/img/loading.gif"></p>
+<p>解决后如下</p>
+<p><img src="/images/java114.png" srcset="/img/loading.gif"></p>
+<h3 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h3><p><strong>问题描述</strong>：项目启动后，浏览器页面中文乱码</p>
+<p><strong>解决思路与方法</strong>：有两种解决方式</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;!-- 方法<span class="hljs-number">1</span> --&gt;<br>response.setCharacterEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>);<br>response.setHeader(<span class="hljs-string">&quot;Content-Type&quot;</span>,<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span>);<br><br>&lt;!-- 方法<span class="hljs-number">2</span>，使用较多 --&gt;<br>response.setContentType(<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="问题六"><a href="#问题六" class="headerlink" title="问题六"></a>问题六</h3><p><strong>问题描述</strong>：eclipse(和sts)无法识别xml文件</p>
+<p><strong>解决思路与方法</strong>：首先检查了tomcat服务器，确定是一个成功的web项目。后来查阅发现可能是xml文件默认打开方式错误，于是设置。</p>
+<p>1、Window –&gt; Preferences –&gt; General –&gt; File Associations</p>
+<p>2、Add，输入xml</p>
+<p><img src="/images/java115.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java116.png" srcset="/img/loading.gif"></p>
+<h2 id="三、上传war包到相应文件夹（已上传）"><a href="#三、上传war包到相应文件夹（已上传）" class="headerlink" title="三、上传war包到相应文件夹（已上传）"></a>三、上传war包到相应文件夹（已上传）</h2><p><img src="/images/java117.png" srcset="/img/loading.gif"></p>
+<p>注：访问出现404，是因为没有web.xml里面配置的那几个文件，可以自己新建一个index.jsp之类的文件。</p>
+<h2 id="四、思考与小结"><a href="#四、思考与小结" class="headerlink" title="四、思考与小结"></a>四、思考与小结</h2><h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><h4 id="1、web-xml"><a href="#1、web-xml" class="headerlink" title="1、web.xml"></a>1、web.xml</h4><blockquote>
+<p>用来配置欢迎页，Servlet等，没用到时不是必须的。</p>
+<p>启动后会首先读取</p>
+</blockquote>
+<p>节点描述（部分）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span> <span class="hljs-comment">&lt;!-- 部署描述符的根元素 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span><span class="hljs-comment">&lt;!-- web应用项目的名字 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><span class="hljs-comment">&lt;!-- 初始化参数 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><span class="hljs-comment">&lt;!-- 过滤器 --&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置servlet --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>servletname<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 包名+类名 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>servlet.PrivateSum<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>servletname<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/servletpath<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-servlet配置"><a href="#2-servlet配置" class="headerlink" title="2.servlet配置"></a>2.servlet配置</h4><p>有两种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//第一种，基于注解</span><br><span class="hljs-meta">@WebServlet(&quot;/LifeServlet&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LifeServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 基于xml --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>servletname<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 包名+类名 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>servlet.PrivateSum<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>servletname<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/servletpath<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>两种方法优缺点分析</p>
+<p>xml优点：</p>
+<blockquote>
+<p>1.使用xml配置可以让软件更具有扩展性</p>
+<p>2.对象之间的关系一目了然。</p>
+<p>3.xml配置文件比注解功能齐全</p>
+<p>4.xml是集中式的元数据，不需要和代码绑定的</p>
+</blockquote>
+<p>xml缺点：</p>
+<blockquote>
+<p>1.工作量相对大</p>
+<p>2.配置文件过多的话维护比较困难</p>
+<p>3.开发的时候，既要维护代码又要维护配置文件，使得开发的效率降低</p>
+</blockquote>
+<p>注解配置优点：</p>
+<blockquote>
+<p>方便，简洁，配置信息和 Java 代码放在一起，有助于增强程序的内聚性；</p>
+</blockquote>
+<p>注解配置缺点：</p>
+<blockquote>
+<p>使用太多会影响代码的简洁度；分散到各个class文件中，所以不宜维护；</p>
+</blockquote>
+<h4 id="3-servlet生命周期"><a href="#3-servlet生命周期" class="headerlink" title="3.servlet生命周期"></a>3.servlet生命周期</h4><p>生命周期过程：</p>
+<ol>
+<li><p>通过映射机制实例化Servlet对象，调用无参构造函数</p>
+</li>
+<li><p>调用init方法初始化</p>
+</li>
+<li><p>调用service完成业务逻辑</p>
+</li>
+<li><p>调用destroy方法，释放当前对象</p>
+</li>
+</ol>
+<p>生命周期方法：无参构造函数–&gt;init()–&gt;service()–&gt;destroy()</p>
+<p>浏览器访问Servlet时，Tomcat会查询当前的实例化对象是否存在，如果不存在，则通过映射机制动态创建对象；如果存在，直接执行生命周期第三步（完成业务逻辑部分）。</p>
+<p>生命周期的实验中计数器的累计操作：（我的理解）每次访问页面时，service执行一次doPost，由它来调用doGet，然后count++，实现计数的累加。</p>
+<h4 id="4-servlet层次结构"><a href="#4-servlet层次结构" class="headerlink" title="4.servlet层次结构"></a>4.servlet层次结构</h4><blockquote>
+<p>Servlet -&gt; GenericServlet -&gt; HttpServlet</p>
+<p>GenericServlet实现了Servlet接口，同时为它的子类屏蔽了不常用方法。</p>
+<p>开发者定义的Servlet类只需要继承HttpServlet即可，重写doPOST和doGET。</p>
+</blockquote>
+<h4 id="5-servletConfig介绍"><a href="#5-servletConfig介绍" class="headerlink" title="5.servletConfig介绍"></a>5.servletConfig介绍</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LifeServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Servlet</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(ServletConfig servletConfig)</span> <span class="hljs-keyword">throws</span> ServletException </span>&#123;<br>        <span class="hljs-comment">//servletConfig对象其实是一个接口，用来描述Servlet基本信息</span><br>        <br>        <span class="hljs-comment">//方法1：getServletName()，获取servlet名称，全类名</span><br>        System.out.println(servletConfig.getServletName());<br>        <br>        <span class="hljs-comment">//方法2：getInitParameter()，获取初始化参数，要用这个方法需要基于xml配置</span><br>        servletConfig.getInitParameter(<span class="hljs-string">&quot;username&quot;</span>);<br>        <br>        <span class="hljs-comment">//方法3：getInitParameterNames()，		取出所有init参数名,无序遍历init参数</span><br>        <span class="hljs-comment">//泛型，加强数据安全性，类型限制</span><br>        Enumeration&lt;String&gt; enumeration = servletConfig.getInitParameterNames();<br>        <span class="hljs-keyword">while</span>(enumeration.hasMoreElements())&#123;<br>            String element = enumeration.nextElement();<br>            System.out.println(<span class="hljs-string">&quot;Config:&quot;</span>+element);<span class="hljs-comment">//username</span><br>        &#125;<br>        <br>        <span class="hljs-comment">//方法4：getInitParameterNames()，返回servletcntext对象</span><br>        <span class="hljs-comment">//servletcntext对象：是servlet的上下文，是整个servlet的管理者</span><br>        <span class="hljs-comment">//servletcntext也有servletConfig的方法，返回来的数据是全局的</span><br>        ServletContext servletContext = servletConfig.getServletContext();<br>        Enumeration&lt;String&gt; enumerations = servletContext.getInitParameterNames();<br>        <span class="hljs-keyword">while</span>(enumerations.hasMoreElements())&#123;<br>            String element = enumerations.nextElement();<br>            System.out.println(<span class="hljs-string">&quot;context:&quot;</span>+element);<span class="hljs-comment">//age</span><br>        &#125;<br>        <span class="hljs-comment">//当前应用的名称</span><br>        System.out.println(servletContext.getContextPath());<br>        <span class="hljs-comment">//tomcat版本</span><br>        System.out.println(servletContext.getServerInfo());<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        ServletConfig:侧重某一个servlet实例,局部</span><br><span class="hljs-comment">        ServletContext:侧重于整个servlet，他的身上也有init中参数的那些方法，全局</span><br><span class="hljs-comment">        * */</span><br>    &#125;<br>    <br>    <span class="hljs-comment">//其他的这里省略没写</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="6-不同域的数据共享情况"><a href="#6-不同域的数据共享情况" class="headerlink" title="6.不同域的数据共享情况"></a>6.不同域的数据共享情况</h4><h5 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h5><p>在一次会话内有效。</p>
+<p>会话：客户端发生的一系列连续的请求与响应过程（浏览器打开到关闭）。</p>
+<h5 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h5><p> 从服务器开始执行服务，到服务器关闭为止。范围最大，停留时间最久，不要滥用，要注意的成服务器负载。只要将数据存入application对象，数据的范围范围就为Application。</p>
+<h3 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h3><p>在学习之前有先自己了解过JavaWeb，发现中间还是有很多地方很绕，在最开始学的时候有点迷糊，容易搞混jsp内置对象和servlet里面init参数对象的一些方法，但是之后梳理做了笔记就好了很多。在自学的途中遇到过很多报错，开始花的时间很长，但是正是由于这些错误的积累，在之后的时候遇到问题之后会首先分析它可能的原因，然后再去有针对性的寻找方法，致使解决问题速度快了很多。</p>
+<p>还有一点就是可以适当问问别人，比如我当时遇到的一个乱码问题，花了很多时间去解决，但之后我在帮别人解决的时候就会很快，这说明你的一个错误可能别人已经遇到并且解决了，或者他的角度与你不同，会更快的找到解决办法，同时说明记录错误也很重要。</p>
+<p>认识到javaweb跟javase很不同，需要了解与学习的变多了，所以还是需要我们比较多的自学，去扩展了解，才能较为熟练地掌握方法。</p>
+<h3 id="自我评价"><a href="#自我评价" class="headerlink" title="自我评价"></a>自我评价</h3><p>自我感觉本次上机很不错，在之前有自己学习，遇到了一些问题（第二大点都已说明），比如乱码问题都遇见了三个，控制台，浏览器，注释。但是还是比较顺利地解决了，并且形成了笔记，在之后的总结也是收获了很多，在readme的思考题的提示下学习到了很多新的知识点，并且进行了尝试，很有趣。比如基本了解了session域和application域，并且了解到还有其他的域ModelAndView和request。了解了web.xml的节点以及它的运行机制，对原理有了一定了了解，比如servlet生命周期第一步创建对象就是通过映射机制来实现的，所以在web.xml文件里面需要写出完整的包名和类名。很ok，收获多多。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JAVAEE%E4%B8%8A%E6%9C%BA%E5%B0%8F%E7%BB%93/">JAVAEE上机小结</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javaWeb/">javaWeb</a>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/17/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E5%9B%9B%EF%BC%9AJSP%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【JAVAEE】学习四：JSP内置对象作用域</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/17/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E4%B8%89%EF%BC%9AJSP/">
+                        <span class="hidden-mobile">【JAVAEE】学习三：JSP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content"> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+ 
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020029200号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
