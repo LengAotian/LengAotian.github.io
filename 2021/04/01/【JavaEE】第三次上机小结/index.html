@@ -256,26 +256,26 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月1日 下午
+                  本文最后更新于：2021年4月1日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="【JavaEE】第三次上机小结"><a href="#【JavaEE】第三次上机小结" class="headerlink" title="【JavaEE】第三次上机小结"></a>【JavaEE】第三次上机小结</h1><h2 id="一、参考老师的war包建立项目"><a href="#一、参考老师的war包建立项目" class="headerlink" title="一、参考老师的war包建立项目"></a>一、参考老师的war包建立项目</h2><h3 id="Lab13"><a href="#Lab13" class="headerlink" title="Lab13"></a>Lab13</h3><h4 id="1、分析代码"><a href="#1、分析代码" class="headerlink" title="1、分析代码"></a>1、分析代码</h4><p>（1）在web.xml中配置过滤器，对url进行过滤</p>
-<p><img src="%5Cimages%5Cjava31.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java31.png" srcset="/img/loading.gif"></p>
 <p>（2）首先进入拦截器，拦截器中分为预设，放行，善后三部分，在放行后可到达Servlet，之后会回到善后部分。</p>
-<p><img src="%5Cimages%5Cjava32.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java32.png" srcset="/img/loading.gif"></p>
 <p>（3）修改代码，在页面输出</p>
-<p><img src="%5Cimages%5Cjava33.png" srcset="/img/loading.gif"></p>
-<p><img src="%5Cimages%5Cjava34.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java33.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java34.png" srcset="/img/loading.gif"></p>
 <h3 id="Lab14"><a href="#Lab14" class="headerlink" title="Lab14"></a>Lab14</h3><h4 id="1、分析代码-1"><a href="#1、分析代码-1" class="headerlink" title="1、分析代码"></a>1、分析代码</h4><p>（1）有两个过滤器，顺序是按照在web.xml中的配置顺序来执行的，先执行01，在执行02</p>
-<p><img src="%5Cimages%5Cjava35.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java35.png" srcset="/img/loading.gif"></p>
 <p>（2）运行程序，观察输出的顺序</p>
-<p><img src="%5Cimages%5Cjava36.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java36.png" srcset="/img/loading.gif"></p>
 <p>（3）调整两个过滤器位置（修改在web.xml中的配置）</p>
-<p><img src="%5Cimages%5Cjava37.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java37.png" srcset="/img/loading.gif"></p>
 <p>（4）观察输出</p>
-<p><img src="%5Cimages%5Cjava38.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java38.png" srcset="/img/loading.gif"></p>
 <h4 id="2、回答问题"><a href="#2、回答问题" class="headerlink" title="2、回答问题"></a>2、回答问题</h4><p>（1）那么，多个过滤器存在时，怎么设置谁先过滤，谁后过滤呢？</p>
 <p>回答：通过web.xml的配置顺序进行</p>
 <p>（2）思考，周边业务【即过滤过程】本身有没有先后顺序<br>    如果：核心业务是约会，之前是先洗漱，再化妆，还是可以先化妆，再洗漱？<br>    如果：核心业务是吃饭，之前是先拿碗，还是先拿筷子？</p>
@@ -417,12 +417,12 @@
 <p>（4）本例的监听器本质上是在监测容器的什么事件引发的什么对象的变化？</p>
 <p>回答：是检测容器的session域发生增加或减少，引发的application作用域中count数值的增加与减少。</p>
 <h3 id="Lab17"><a href="#Lab17" class="headerlink" title="Lab17"></a>Lab17</h3><h4 id="1、分析代码-4"><a href="#1、分析代码-4" class="headerlink" title="1、分析代码"></a>1、分析代码</h4><p>（1）web.xml设置了多个过滤器，控制器，还有会话过期时间设置</p>
-<p><img src="%5Cimages%5Cjava39.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java39.png" srcset="/img/loading.gif"></p>
 <p>（2）全局过滤器，访问就会进入</p>
 <p>（3）登入过滤器，从session中取值，判断是否登录</p>
-<p><img src="%5Cimages%5Cjava310.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java310.png" srcset="/img/loading.gif"></p>
 <p>（4）MyFilte演示生命周期</p>
-<p><img src="%5Cimages%5Cjava311.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java311.png" srcset="/img/loading.gif"></p>
 <h4 id="2、回答问题-3"><a href="#2、回答问题-3" class="headerlink" title="2、回答问题"></a>2、回答问题</h4><p>（1）本例中的javabean在哪里完成定义的？在哪里用到了？</p>
 <p>（1.1）这个javabean写得规范吗？</p>
 <p>回答：不规范</p>
@@ -453,16 +453,16 @@
 <p>回答：通过sendRedirect(String path)重定向。</p>
 <p>（7）对于过滤器和控制器的配置，web.xml方式和注解方式，应该如何实现，应该如何选择？</p>
 <p>回答：web.xml方式是在文件中进行配置；注解方式是在过滤器和控制器添加“@WebFilter(“/xxxxx)”或“@WebServlet(“/xxxxx)”来注解。现阶段建议选用web.xml进行注解，便于观察和学习。</p>
-<h2 id="二、已上传至相应目录"><a href="#二、已上传至相应目录" class="headerlink" title="二、已上传至相应目录"></a>二、已上传至相应目录</h2><p><img src="%5Cimages%5Cjava312.png" srcset="/img/loading.gif"></p>
+<h2 id="二、已上传至相应目录"><a href="#二、已上传至相应目录" class="headerlink" title="二、已上传至相应目录"></a>二、已上传至相应目录</h2><p><img src="/images/java312.png" srcset="/img/loading.gif"></p>
 <h2 id="三、小结"><a href="#三、小结" class="headerlink" title="三、小结"></a>三、小结</h2><h3 id="（一）遇到的问题"><a href="#（一）遇到的问题" class="headerlink" title="（一）遇到的问题"></a>（一）遇到的问题</h3><h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p><strong>问题描述</strong>：Tomact启动时端口被占用</p>
-<p><img src="%5Cimages%5Cjava313.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java313.png" srcset="/img/loading.gif"></p>
 <p><strong>解决思路和方法</strong>：打开cmd，输入netstat -ano|findstr 8080，查看被占用的PID，在任务管理器中找到相应的程序，结束进程</p>
 <h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p><strong>问题描述</strong>：过滤器换顺序后乱码</p>
-<p><img src="%5Cimages%5Cjava314.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java314.png" srcset="/img/loading.gif"></p>
 <p><strong>解决思路和方法</strong>：考虑是过滤器中response.setContentType(“text/html;charset=utf-8”);只在第一个过滤器中存在，第二个中没有，调换顺序后失效，于是在第二个中也加入，解决。</p>
 <h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p><strong>问题描述</strong>：访问LoginAllServlet.java出错</p>
 <p><strong>解决思路和方法</strong>：在web.xml进行注释的解除和添加注释</p>
-<p><img src="%5Cimages%5Cjava315.png" srcset="/img/loading.gif"></p>
+<p><img src="/images/java315.png" srcset="/img/loading.gif"></p>
 <h3 id="（二）学习小结与心得"><a href="#（二）学习小结与心得" class="headerlink" title="（二）学习小结与心得"></a>（二）学习小结与心得</h3><p>本次学习，学习到了一些新的知识，除了上述阐述的，还有EL表达式和JSTL表达式</p>
 <h4 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h4><blockquote>
 <p>Expression Language表达式语言</p>
@@ -561,6 +561,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/01/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E4%BA%94%EF%BC%9A%E8%BF%87%E6%BB%A4%E5%99%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【JAVAEE】学习五：过滤器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
