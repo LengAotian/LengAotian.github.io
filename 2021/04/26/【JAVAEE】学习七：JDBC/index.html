@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月27日 凌晨
+                  本文最后更新于：2021年4月27日 晚上
                 
               </p>
             
@@ -279,7 +279,7 @@
 <p>2、获取Connection，建立java程序与数据库的连接。</p>
 <p>3、创建Statement对象，由Connection产生，执行SQL语句。</p>
 <p>4、若需要返回值，则创建ResultSet对象，保存Statement执行后查询到的结果。</p>
-<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h3><h4 id="（1）首先导入jar包"><a href="#（1）首先导入jar包" class="headerlink" title="（1）首先导入jar包"></a>（1）首先导入jar包</h4><p><img src="/images/image-20210425205035848.png" srcset="/img/loading.gif"></p>
+<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h3><h4 id="（1）首先导入jar包"><a href="#（1）首先导入jar包" class="headerlink" title="（1）首先导入jar包"></a>（1）首先导入jar包</h4><p><img src="/images/image-20210427190643813.png" srcset="/img/loading.gif"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.zll.test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;<br>        <span class="hljs-comment">//1.加载驱动</span><br>        <span class="hljs-comment">//反射机制</span><br>        Class.forName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br>        <span class="hljs-comment">//2.获取连接</span><br>        String url = <span class="hljs-string">&quot;jdbc:mysql://&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="（2）添加数据库，获取驱动"><a href="#（2）添加数据库，获取驱动" class="headerlink" title="（2）添加数据库，获取驱动"></a>（2）添加数据库，获取驱动</h4><p>点击Database</p>
@@ -342,6 +342,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/27/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E5%85%AB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【JAVAEE】学习八：数据库连接池</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
