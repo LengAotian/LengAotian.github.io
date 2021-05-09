@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>【报错信息】JAVA：无效的源发行版：14</title>
+    <link href="/2021/05/09/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91JAVA%EF%BC%9A%E6%97%A0%E6%95%88%E7%9A%84%E6%BA%90%E5%8F%91%E8%A1%8C%E7%89%88%EF%BC%9A14/"/>
+    <url>/2021/05/09/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91JAVA%EF%BC%9A%E6%97%A0%E6%95%88%E7%9A%84%E6%BA%90%E5%8F%91%E8%A1%8C%E7%89%88%EF%BC%9A14/</url>
+    
+    <content type="html"><![CDATA[<h1 id="【报错信息】JAVA：无效的源发行版：14"><a href="#【报错信息】JAVA：无效的源发行版：14" class="headerlink" title="【报错信息】JAVA：无效的源发行版：14"></a>【报错信息】JAVA：无效的源发行版：14</h1><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p>进行单元测试时发现此错误：</p><p>Java：无效的源发行版：14</p><p><img src="/images/image-20210509085340445.png"></p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>1、查看本机的jdk版本：输入java -version</p><p><img src="/images/image-20210509085520831.png"></p><p>2、修改项目的设置</p><p>File-&gt;Project Structure</p><p><img src="/images/image-20210509085751944.png"></p><p>Project Structure中：</p><p><img src="/images/image-20210509095306288.png"></p><p><img src="/images/image-20210509095400655.png"></p><p><img src="/images/image-20210509095414746.png"></p><p><img src="/images/image-20210509095430908.png"></p><p>File-&gt;Setting</p><p><img src="/images/image-20210509095745803.png"></p><p><img src="/images/image-20210509095759676.png"></p><p><img src="/images/image-20210509095820113.png"></p><p><img src="/images/image-20210509095842450.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>报错信息</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【JAVAEE】学习八：数据库连接池</title>
     <link href="/2021/04/27/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E5%85%AB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"/>
     <url>/2021/04/27/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E5%85%AB%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</url>
@@ -480,17 +499,17 @@
   
   
   <entry>
-    <title>【React】yarn eject报错</title>
-    <link href="/2021/03/05/%E3%80%90React%E3%80%91yarn%20eject%E6%8A%A5%E9%94%99/"/>
-    <url>/2021/03/05/%E3%80%90React%E3%80%91yarn%20eject%E6%8A%A5%E9%94%99/</url>
+    <title>【报错信息】React：yarn eject报错</title>
+    <link href="/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Ayarn%20eject%E6%8A%A5%E9%94%99/"/>
+    <url>/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Ayarn%20eject%E6%8A%A5%E9%94%99/</url>
     
-    <content type="html"><![CDATA[<h1 id="【React】yarn-eject报错"><a href="#【React】yarn-eject报错" class="headerlink" title="【React】yarn eject报错"></a>【React】yarn eject报错</h1><h2 id="报错问题："><a href="#报错问题：" class="headerlink" title="报错问题："></a>报错问题：</h2><p>create-react-app项目使用yarn eject暴露webpack相关配置时，报错</p><p><img src="/images/yarn-eject.png"></p><h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><p>提交git</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m -xxx<br>复制代码<br></code></pre></td></tr></table></figure><p>提交后问题解决</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="【报错信息】React：yarn-eject报错-md"><a href="#【报错信息】React：yarn-eject报错-md" class="headerlink" title="【报错信息】React：yarn eject报错.md"></a>【报错信息】React：yarn eject报错.md</h1><h2 id="报错问题："><a href="#报错问题：" class="headerlink" title="报错问题："></a>报错问题：</h2><p>create-react-app项目使用yarn eject暴露webpack相关配置时，报错</p><p><img src="/images/yarn-eject.png"></p><h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><p>提交git</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m -xxx<br>复制代码<br></code></pre></td></tr></table></figure><p>提交后问题解决</p>]]></content>
     
     
     
     <tags>
       
-      <tag>React</tag>
+      <tag>报错信息</tag>
       
     </tags>
     
@@ -499,17 +518,17 @@
   
   
   <entry>
-    <title>【React】项目启动less报错</title>
-    <link href="/2021/03/05/%E3%80%90React%E3%80%91less%E6%8A%A5%E9%94%99/"/>
-    <url>/2021/03/05/%E3%80%90React%E3%80%91less%E6%8A%A5%E9%94%99/</url>
+    <title>【报错信息】React：less报错</title>
+    <link href="/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Aless%E6%8A%A5%E9%94%99/"/>
+    <url>/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Aless%E6%8A%A5%E9%94%99/</url>
     
-    <content type="html"><![CDATA[<h1 id="【React】create-react-app项目启动关于less报错"><a href="#【React】create-react-app项目启动关于less报错" class="headerlink" title="【React】create-react-app项目启动关于less报错"></a>【React】create-react-app项目启动关于less报错</h1><h2 id="报错问题："><a href="#报错问题：" class="headerlink" title="报错问题："></a>报错问题：</h2><p>在项目组中使用antd组件，自定义配置后，启动项目报错</p><p>TypeError: this.getOptions is not a function</p><h2 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h2><p>less-loader版本过高</p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>1、卸载原版本</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yarn <span class="hljs-keyword">remove</span> <span class="hljs-keyword">less</span>-loader<br>复制代码<br></code></pre></td></tr></table></figure><p>2、安装新版本</p><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">yarn <span class="hljs-keyword">add</span> less-loader<span class="hljs-subst">@5</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br>复制代码<br></code></pre></td></tr></table></figure><p>完成后报错解决</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="【报错信息】React：less报错"><a href="#【报错信息】React：less报错" class="headerlink" title="【报错信息】React：less报错"></a>【报错信息】React：less报错</h1><h2 id="报错问题："><a href="#报错问题：" class="headerlink" title="报错问题："></a>报错问题：</h2><p>在项目组中使用antd组件，自定义配置后，使用create-react-app启动项目报错</p><p>TypeError: this.getOptions is not a function</p><h2 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h2><p>less-loader版本过高</p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>1、卸载原版本</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yarn <span class="hljs-keyword">remove</span> <span class="hljs-keyword">less</span>-loader<br>复制代码<br></code></pre></td></tr></table></figure><p>2、安装新版本</p><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">yarn <span class="hljs-keyword">add</span> less-loader<span class="hljs-subst">@5</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br>复制代码<br></code></pre></td></tr></table></figure><p>完成后报错解决</p>]]></content>
     
     
     
     <tags>
       
-      <tag>React</tag>
+      <tag>报错信息</tag>
       
     </tags>
     
@@ -518,17 +537,17 @@
   
   
   <entry>
-    <title>【React】antd自定义配置后报错</title>
-    <link href="/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/"/>
-    <url>/2021/03/05/%E3%80%90React%E3%80%91antd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/</url>
+    <title>【报错信息】React：antd自定义配置报错.md</title>
+    <link href="/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Aantd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/"/>
+    <url>/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91React%EF%BC%9Aantd%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%8A%A5%E9%94%99/</url>
     
-    <content type="html"><![CDATA[<h1 id="【React】create-react-app项目使用antd自定义配置后，启动项目报错"><a href="#【React】create-react-app项目使用antd自定义配置后，启动项目报错" class="headerlink" title="【React】create-react-app项目使用antd自定义配置后，启动项目报错"></a>【React】create-react-app项目使用antd自定义配置后，启动项目报错</h1><h2 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h2><p>Error: Cannot find module ‘react-scripts/package.json”</p><p><img src="/images/antd1.png"></p><h2 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h2><p>缺少react-script类库文件</p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>安装react-script</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">yarn <span class="hljs-keyword">add </span>react-<span class="hljs-keyword">script </span>-dev<br></code></pre></td></tr></table></figure><p><img src="/images/antd2.png"></p><p>安装完成可以正常启动</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="【报错信息】React：antd自定义配置报错"><a href="#【报错信息】React：antd自定义配置报错" class="headerlink" title="【报错信息】React：antd自定义配置报错"></a>【报错信息】React：antd自定义配置报错</h1><h2 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h2><p>create-react-app项目使用antd自定义配置后，启动项目报错</p><p>Error: Cannot find module ‘react-scripts/package.json”</p><p><img src="/images/antd1.png"></p><h2 id="报错原因："><a href="#报错原因：" class="headerlink" title="报错原因："></a>报错原因：</h2><p>缺少react-script类库文件</p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>安装react-script</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">yarn <span class="hljs-keyword">add </span>react-<span class="hljs-keyword">script </span>-dev<br></code></pre></td></tr></table></figure><p><img src="/images/antd2.png"></p><p>安装完成可以正常启动</p>]]></content>
     
     
     
     <tags>
       
-      <tag>React</tag>
+      <tag>报错信息</tag>
       
     </tags>
     
@@ -537,17 +556,17 @@
   
   
   <entry>
-    <title>【hexo】--hexo clean命令报错</title>
-    <link href="/2021/03/05/%E3%80%90hexo%E3%80%91hexo%20clean%E6%8A%A5%E9%94%99/"/>
-    <url>/2021/03/05/%E3%80%90hexo%E3%80%91hexo%20clean%E6%8A%A5%E9%94%99/</url>
+    <title>【报错信息】hexo：clean命令报错</title>
+    <link href="/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91hexo%EF%BC%9Aclean%E6%8A%A5%E9%94%99/"/>
+    <url>/2021/03/05/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91hexo%EF%BC%9Aclean%E6%8A%A5%E9%94%99/</url>
     
-    <content type="html"><![CDATA[<h1 id="【hexo】–hexo-clean命令报错"><a href="#【hexo】–hexo-clean命令报错" class="headerlink" title="【hexo】–hexo clean命令报错"></a>【hexo】–hexo clean命令报错</h1><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p>在使用hexo clean命令时发生错误，报错信息如下</p><p>FATAL YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key (107:16)</p><p><img src="/images/hexo-clean.png"></p><p>发现所有hexo命令都会报此错误，如hexo g,hexo d。</p><h2 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h2><p>配置hexo的_config.yml文件时，冒号后面少了空格，或者重复写了键。我就是重复写了language键。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>添加上空格或者删除重复的键。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="【报错信息】hexo：clean命令报错"><a href="#【报错信息】hexo：clean命令报错" class="headerlink" title="【报错信息】hexo：clean命令报错"></a>【报错信息】hexo：clean命令报错</h1><h2 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h2><p>在使用hexo clean命令时发生错误，报错信息如下</p><p>FATAL YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key (107:16)</p><p><img src="/images/hexo-clean.png"></p><p>发现所有hexo命令都会报此错误，如hexo g,hexo d。</p><h2 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h2><p>配置hexo的_config.yml文件时，冒号后面少了空格，或者重复写了键。我就是重复写了language键。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>添加上空格或者删除重复的键。</p>]]></content>
     
     
     
     <tags>
       
-      <tag>hexo</tag>
+      <tag>报错信息</tag>
       
     </tags>
     
