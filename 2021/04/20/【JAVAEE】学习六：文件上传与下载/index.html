@@ -20,7 +20,7 @@
   <meta name="author" content="LengAotian">
   <meta name="keywords" content="">
   
-  <title>【JAVAEE】学习六：文件上传与下载 - 冷傲天的博客</title>
+  <title>【JavaEE】学习六：文件上传与下载 - 冷傲天的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -177,7 +177,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="【JAVAEE】学习六：文件上传与下载">
+            <span class="h2" id="subtitle" title="【JavaEE】学习六：文件上传与下载">
               
             </span>
 
@@ -252,16 +252,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【JAVAEE】学习六：文件上传与下载</h1>
+            <h1 style="display: none">【JavaEE】学习六：文件上传与下载</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月20日 下午
+                  本文最后更新于：2021年6月2日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="【JAVAEE】学习六：文件上传与下载"><a href="#【JAVAEE】学习六：文件上传与下载" class="headerlink" title="【JAVAEE】学习六：文件上传与下载"></a>【JAVAEE】学习六：文件上传与下载</h1><h2 id="一、文件上传"><a href="#一、文件上传" class="headerlink" title="一、文件上传"></a>一、文件上传</h2><h3 id="1、JSP部分"><a href="#1、JSP部分" class="headerlink" title="1、JSP部分"></a>1、JSP部分</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;!--<span class="hljs-number">1</span>、input的type设置为file--&gt;<br>&lt;!--<span class="hljs-number">2</span>、提交方法为post，若为get会将文件名传给服务器--&gt;<br>&lt;!--<span class="hljs-number">3</span>、enctype设置为<span class="hljs-string">&quot;multipart/form-data&quot;</span>--&gt;<br>&lt;form action=<span class="hljs-string">&quot;/upload&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span> enctype=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;file&quot;</span> value=<span class="hljs-string">&quot;img&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;submit&quot;</span> value=<span class="hljs-string">&quot;点击提交&quot;</span>&gt;<br>&lt;/form&gt;<br></code></pre></td></tr></table></figure>
+              <h1 id="【JavaEE】学习六：文件上传与下载"><a href="#【JavaEE】学习六：文件上传与下载" class="headerlink" title="【JavaEE】学习六：文件上传与下载"></a>【JavaEE】学习六：文件上传与下载</h1><h2 id="一、文件上传"><a href="#一、文件上传" class="headerlink" title="一、文件上传"></a>一、文件上传</h2><h3 id="1、JSP部分"><a href="#1、JSP部分" class="headerlink" title="1、JSP部分"></a>1、JSP部分</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;!--<span class="hljs-number">1</span>、input的type设置为file--&gt;<br>&lt;!--<span class="hljs-number">2</span>、提交方法为post，若为get会将文件名传给服务器--&gt;<br>&lt;!--<span class="hljs-number">3</span>、enctype设置为<span class="hljs-string">&quot;multipart/form-data&quot;</span>--&gt;<br>&lt;form action=<span class="hljs-string">&quot;/upload&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span> enctype=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;file&quot;</span> value=<span class="hljs-string">&quot;img&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;submit&quot;</span> value=<span class="hljs-string">&quot;点击提交&quot;</span>&gt;<br>&lt;/form&gt;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、servlet部分"><a href="#2、servlet部分" class="headerlink" title="2、servlet部分"></a>2、servlet部分</h3><h4 id="2-1-输入输出流处理"><a href="#2-1-输入输出流处理" class="headerlink" title="2.1 输入输出流处理"></a>2.1 输入输出流处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> upload.doc.zll;<br><br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-meta">@WebServlet(&quot;/upload&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">upload</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        <span class="hljs-comment">//1、取出文件，使用输入流</span><br>        InputStream inputStream =  req.getInputStream();<br>        Reader reader = <span class="hljs-keyword">new</span> InputStreamReader(inputStream);<br>        BufferedReader bufferedReader = <span class="hljs-keyword">new</span>            BufferedReader(reader);<br>        <span class="hljs-comment">//2、存储文件，使用输出流</span><br>        <span class="hljs-comment">//获取文件绝对路径</span><br>        String path = req.getServletContext().getRealPath(<span class="hljs-string">&quot;file/copy.txt&quot;</span>);<br>        <span class="hljs-comment">//3、输出</span><br>        System.out.println(path);<br>        OutputStream outputStream = <span class="hljs-keyword">new</span> FileOutputStream(path);<br>        Writer writer = <span class="hljs-keyword">new</span> OutputStreamWriter(outputStream);<br>        BufferedWriter bufferedWriter = <span class="hljs-keyword">new</span> BufferedWriter(writer);<br>        String str = <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">while</span> ((str = bufferedReader.readLine()) != <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-comment">//浏览器会在开头结尾自带一些信息</span><br>            bufferedWriter.write(str);<br>        &#125;<br>        <span class="hljs-comment">//4、关闭输入输出流</span><br>        <span class="hljs-comment">//在关闭FileOutputStream之前先关闭BufferedWriter</span><br>        bufferedWriter.close();<br>        writer.close();<br>        inputStream.close();<br>        reader.close();<br>        bufferedReader.close();<br>        outputStream.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -306,9 +306,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javaWeb/">javaWeb</a>
+                      <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
                     
-                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
                     
                   </div>
                 
@@ -325,9 +325,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/26/%E3%80%90JAVAEE%E3%80%91%E5%AD%A6%E4%B9%A0%E4%B8%83%EF%BC%9AJDBC/">
+                      <a href="/2021/04/26/%E3%80%90JavaEE%E3%80%91%E5%AD%A6%E4%B9%A0%E4%B8%83%EF%BC%9AJDBC/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【JAVAEE】学习七：JDBC</span>
+                        <span class="hidden-mobile">【JavaEE】学习七：JDBC</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
