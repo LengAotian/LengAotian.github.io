@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>【报错信息】Java:set越界</title>
+    <title>【报错信息】Java：set越界</title>
     <link href="/2021/08/06/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91Java%EF%BC%9Aset%E8%B6%8A%E7%95%8C/"/>
     <url>/2021/08/06/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91Java%EF%BC%9Aset%E8%B6%8A%E7%95%8C/</url>
     
-    <content type="html"><![CDATA[<h1 id="【报错信息】Java-set越界"><a href="#【报错信息】Java-set越界" class="headerlink" title="【报错信息】Java:set越界"></a>【报错信息】Java:set越界</h1><h2 id="1、报错信息"><a href="#1、报错信息" class="headerlink" title="1、报错信息"></a>1、报错信息</h2><p>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0</p><p><img src="C:\Users\10618\AppData\Roaming\Typora\typora-user-images\image-20210806200428051.png" alt="image-20210806200428051"></p><h2 id="2、分析解决"><a href="#2、分析解决" class="headerlink" title="2、分析解决"></a>2、分析解决</h2><p>发现是对list进行了get方法查询，如果list为空，则会发生越界，于是再判断后使用get方法。</p><p><img src="C:\Users\10618\AppData\Roaming\Typora\typora-user-images\image-20210806200632641.png" alt="image-20210806200632641"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="【报错信息】Java：set越界"><a href="#【报错信息】Java：set越界" class="headerlink" title="【报错信息】Java：set越界"></a>【报错信息】Java：set越界</h1><h2 id="1、报错信息"><a href="#1、报错信息" class="headerlink" title="1、报错信息"></a>1、报错信息</h2><p>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0</p><p><img src="/images%5Cimage-20210806200428051.png"></p><h2 id="2、分析解决"><a href="#2、分析解决" class="headerlink" title="2、分析解决"></a>2、分析解决</h2><p>发现是对list进行了get方法查询，如果list为空，则会发生越界，于是再判断后使用get方法。</p><p><img src="/images%5Cimage-20210806200632641.png"></p>]]></content>
     
     
     
@@ -33,9 +33,9 @@
     
     <tags>
       
-      <tag>vue</tag>
-      
       <tag>报错信息</tag>
+      
+      <tag>vue</tag>
       
     </tags>
     
