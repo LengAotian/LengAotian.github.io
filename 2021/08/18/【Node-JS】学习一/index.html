@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="记录学习 分享交流">
+  
+  <meta name="author" content="LengAotian">
+  <meta name="keywords" content="">
+  
+  <title>【Node.JS】学习一 - 冷傲天的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lengat.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>冷傲天的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【Node.JS】学习一">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      LengAotian
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-18 14:10" pubdate>
+        2021年8月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      共1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      预计阅读时长
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【Node.JS】学习一</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年8月19日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="【Node-JS】学习一"><a href="#【Node-JS】学习一" class="headerlink" title="【Node.JS】学习一"></a>【Node.JS】学习一</h1><h2 id="一、Node-js介绍"><a href="#一、Node-js介绍" class="headerlink" title="一、Node.js介绍"></a>一、Node.js介绍</h2><h3 id="1-1-Node-js是什么"><a href="#1-1-Node-js是什么" class="headerlink" title="1.1 Node.js是什么"></a>1.1 Node.js是什么</h3><p><strong>Node.js is a JavaScript runtime bult on Chrome’s v8 JavaScript engine.</strong></p>
+<blockquote>
+<p>Node.js 不是一门语言</p>
+<p>Node.js 不是库、不是框架</p>
+<p>Node.js是一个JavaScript运行时环境，可以解析和执行JavaScript 代码，以前只有浏览器可以。</p>
+</blockquote>
+<p><strong>浏览器中的JavaScript</strong></p>
+<blockquote>
+<p>EcmaScript</p>
+<p>BOM</p>
+<p>DOM</p>
+</blockquote>
+<p><strong>Node.js 中的JavaScript</strong></p>
+<blockquote>
+<p>没有BOM、DOMo EcmaScript</p>
+<p>在Node这个JavaScript 执行环境中为JavaScript提供了一些服务器级别的操作API，例如文件读写。</p>
+<p>网络服务的构建</p>
+<p>网络通信</p>
+<p>http服务器等处理。。。</p>
+</blockquote>
+<h3 id="（1）核心模块"><a href="#（1）核心模块" class="headerlink" title="（1）核心模块"></a>（1）核心模块</h3><blockquote>
+<p>Node为JavaScript 提供了很多服务器级别的API，这些API绝大多数都被包装到了一个具名的核心模块中了。</p>
+<p>例如文件操作的fs核心模块，http服务构建的http模块，path路径操作模块、os 操作系统信息模块。。。。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//用来获取机器信息的</span><br><span class="hljs-keyword">var</span> os = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;os&#x27;</span>);<br><span class="hljs-comment">//用来操作路径的</span><br><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-comment">//获取当前机器的CPU信息</span><br><span class="hljs-built_in">console</span>.log(os.cpus());<br><span class="hljs-comment">// memory内存</span><br><span class="hljs-built_in">console</span>.log(os.totalmem());<br><span class="hljs-comment">// extname extension name</span><br><span class="hljs-built_in">console</span>.log(path.extname(<span class="hljs-string">&#x27;c:/a/b/c/d/hello.txt&#x27;</span>));<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="（2）模块系统"><a href="#（2）模块系统" class="headerlink" title="（2）模块系统"></a>（2）模块系统</h3><blockquote>
+<p>require是一个方法</p>
+<p>它的作用就是用来加载模块的</p>
+<p>在Node中,模块有三种:</p>
+<blockquote>
+<p>1、具名的核心模块,例如fs、 http</p>
+<p>2、用户自己编写的文件模块</p>
+<p>3、第三方模块，需要npm安装后使用</p>
+</blockquote>
+<p>Node中没有全局作用域，只有模块作用域</p>
+</blockquote>
+<blockquote>
+<p>require方法有两个作用:</p>
+<p>1．加载文件模块并执行里面的代码</p>
+<p>2．拿到被加载文件模块导出的接口对象</p>
+<blockquote>
+<p>在每个文件模块中都提供了一个对象：exexports</p>
+<p>exexports默认是一个空对象</p>
+<p>可以把所有需要被外部访问的成员挂载到这个对象上</p>
+</blockquote>
+</blockquote>
+<p><strong>Node.js uses an event-driven, non-blocking l/o model that makes it lightweight and efficient.</strong></p>
+<blockquote>
+<p>event-driven事件驱动</p>
+<p>non-blocking l/o model非阻塞lO模型〔异步)</p>
+<p>llightweight and efficient.轻量和高效 </p>
+</blockquote>
+<p><strong>Node.js package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</strong></p>
+<blockquote>
+<p>包管理工具</p>
+<p>npm是世界上最大的开源库生态系统</p>
+<p>绝大条数JavaScript相关的包都存放在了npm上，这样做的目的是为了让开发人员更方便的去下载使用。</p>
+</blockquote>
+<h3 id="1-2-Node-js做什么"><a href="#1-2-Node-js做什么" class="headerlink" title="1.2 Node.js做什么"></a>1.2 Node.js做什么</h3><ul>
+<li><p>Web服务器后台</p>
+</li>
+<li><p>命令行工具</p>
+<blockquote>
+<p>npm(node)</p>
+<p>git(c语言)</p>
+<p>hexo(node)</p>
+</blockquote>
+</li>
+<li><p>接口服务器</p>
+</li>
+</ul>
+<h3 id="1-3-学到的东西"><a href="#1-3-学到的东西" class="headerlink" title="1.3 学到的东西"></a>1.3 学到的东西</h3><p><strong>B/S编程模型</strong></p>
+<blockquote>
+<p>Browser - Server</p>
+<p>back-end</p>
+<p>任何服务端技术这种BS编程模型都是一样，和语言无关</p>
+<p>Node 只是作为我们学习BS编程模型的一个工具而已模块化编程</p>
+<p>RequireJS</p>
+<p>SeaJS</p>
+<p>@import(文件路径)</p>
+<blockquote>
+<p>以前认知的JavaScript只能通过script标签来加载</p>
+<p>在Node 中可以像@import()一样来引用加载JavaScript脚本文件</p>
+</blockquote>
+</blockquote>
+<p><strong>Node常用API</strong></p>
+<p>异步编程</p>
+<blockquote>
+<p>回调函数</p>
+<p>Promise</p>
+<p>async</p>
+<p>generator</p>
+</blockquote>
+<p> <strong>Express Web开发框架</strong></p>
+<p> <strong>Ecmascript 6</strong></p>
+<h2 id="二、下载安装"><a href="#二、下载安装" class="headerlink" title="二、下载安装"></a>二、下载安装</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<p>查看版本号：node –version</p>
+<p>配置环境变量</p>
+<p>hello world：node+文件名</p>
+<h2 id="三、处理文件"><a href="#三、处理文件" class="headerlink" title="三、处理文件"></a>三、处理文件</h2><blockquote>
+<p>fs是file-system 的简写,就是文件系统的意思</p>
+<p>在Node中如果想要进行文件操作，就必须引入fs这个核心模块</p>
+<p>在fs这个核心模块中，就提供了所有的文件操作相关的API</p>
+<p>例如:fs.readFile就是用来读取文件的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1、加载fs模块</span><br><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-comment">// 2、读取文件</span><br><span class="hljs-comment">// 第一个参数就是要读取的文件路径</span><br><span class="hljs-comment">//第二个参数是一个回调函数</span><br><span class="hljs-comment">// 如果读取失败，error就是错误对象；如果读取成功，error就是null。</span><br><span class="hljs-comment">// 如果读取成功，data就是读取到的数据；如果读取失败，error就是错误对象。</span><br><span class="hljs-comment">//       //成功</span><br><span class="hljs-comment">//       //data数据</span><br><span class="hljs-comment">//       //error null</span><br><br><span class="hljs-comment">//       //失败</span><br><span class="hljs-comment">//       //data null</span><br><span class="hljs-comment">//       //error错误对象</span><br>fs.readFile(<span class="hljs-string">&quot;./nodetxt.txt&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, data</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;读取失败！&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">//文件中存储的是二进制数据，打印出来后会转化为十六进制</span><br>    <span class="hljs-built_in">console</span>.log(data); <span class="hljs-comment">//&lt;Buffer e8 bf 99 e6 98 af e4 b8 80 e6 ae b5 e6 b5 8b e8 af 95 e5 86 85 e5 ae b9&gt;</span><br>    <span class="hljs-built_in">console</span>.log(data.toString()); <span class="hljs-comment">// 这是一段测试内容</span><br>  &#125;<br>&#125;);<br><span class="hljs-comment">//3.写文件</span><br><span class="hljs-comment">// 第一个参数:文件路径</span><br><span class="hljs-comment">// 第二个参数: 文件内容</span><br><span class="hljs-comment">// 第三个参数：回调函数</span><br>fs.writeFile(<span class="hljs-string">&quot;./notewrite.txt&quot;</span>, <span class="hljs-string">&quot;write test&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;写入失败！&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;写入成功！&quot;</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="四、简单Http服务"><a href="#四、简单Http服务" class="headerlink" title="四、简单Http服务"></a>四、简单Http服务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1、引入核心模块</span><br><span class="hljs-keyword">const</span> &#123; log &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;console&quot;</span>);<br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-comment">// 2、使用http.createServer()方法创建web服务器</span><br><span class="hljs-keyword">let</span> server = http.createServer();<br><span class="hljs-comment">// 3、服务器做的事</span><br><span class="hljs-comment">// 提供服务:对数据的服务</span><br><span class="hljs-comment">// 发请求</span><br><span class="hljs-comment">// 接收请求</span><br><span class="hljs-comment">// 处理请求</span><br><span class="hljs-comment">// 给个反馈（发送响应)</span><br><br><span class="hljs-comment">// 注册request请求事件</span><br><span class="hljs-comment">// 当客户端请求过来，就会自动触发服务器的 request请求事件，然后执行第二个参数:回调处理</span><br><br>server.on(<span class="hljs-string">&quot;request&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;收到请求！&quot;</span> + request.url);<br>  <span class="hljs-comment">//   write可以使用多次，但是最后一定要使用end来结束响应，否则客户端会一直等待</span><br>  <span class="hljs-comment">//   response.write(&quot;hello&quot;);</span><br>  <span class="hljs-comment">//   response.end();</span><br>  <span class="hljs-comment">//   response.end(&quot;hello!!&quot;);</span><br>  <span class="hljs-comment">// 根据不同的请求路径发送不同的响应结果</span><br><br>  <span class="hljs-comment">// 响应内容只能是二进制数据或者字符串</span><br>  <span class="hljs-comment">// 数字,对象,数组,布尔值都不行</span><br>  <span class="hljs-comment">// JSON.stringify()</span><br>  <span class="hljs-comment">// JSON.parse()</span><br><br>  <span class="hljs-comment">// 1．获取请求路径</span><br>  <span class="hljs-keyword">let</span> url = request.url;<br>  <span class="hljs-comment">// 2．判断路径处理响应</span><br>    <span class="hljs-comment">//通知浏览器编码类型</span><br>    response.setHeader(<span class="hljs-string">&#x27;Content-Type&#x27;</span>,<span class="hljs-string">&#x27;text/plain;charset=utf-8&#x27;</span>);<br>  <span class="hljs-keyword">if</span> (url === <span class="hljs-string">&quot;/&quot;</span>) &#123;<br>    response.end(<span class="hljs-string">&quot;首页&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (url === <span class="hljs-string">&quot;/other&quot;</span>) &#123;<br>    response.end(<span class="hljs-string">&quot;其他页&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    response.end(<span class="hljs-string">&quot;404 Not Found&quot;</span>);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 4、绑定端口号</span><br>server.listen(<span class="hljs-number">3000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;服务器启动成功！通过3000访问。&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Node-JS%E5%AD%A6%E4%B9%A0/">Node.JS学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Node/">Node</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/06/%E3%80%90%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E3%80%91Java%EF%BC%9Aset%E8%B6%8A%E7%95%8C/">
+                        <span class="hidden-mobile">【报错信息】Java：set越界</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content"> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+ 
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020029200号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
