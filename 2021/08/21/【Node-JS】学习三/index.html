@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      共166 字
+      共471 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       预计阅读时长
-      1
+      5
        分钟
     </span>
   
@@ -302,6 +302,34 @@
 <li><p>使用exports接口对象用来导出模块中的成员</p>
 </li>
 </ul>
+<h4 id="1-2-1-加载-require"><a href="#1-2-1-加载-require" class="headerlink" title="1.2.1 加载 require"></a>1.2.1 加载 <code>require</code></h4><p>语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> 自定义变量名， = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;模块&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>两个作业：</p>
+<ul>
+<li>执行被加载模块中的代码</li>
+<li>得到被加载模块中的|exports导出接口对象</li>
+</ul>
+<h4 id="1-2-2-导出-exports"><a href="#1-2-2-导出-exports" class="headerlink" title="1.2.2 导出 exports"></a>1.2.2 导出 <code>exports</code></h4><ul>
+<li>Node中是模块作用域,默认文件中所有的成员只在当前文件模块有效</li>
+<li>对于希望可以被其它模块访问的成员，我们就需要把这些公开的成员都挂载到<code>exports</code>接口对象中就可以了</li>
+</ul>
+<p>导出多个成员（必须在对象中）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">exports</span>.a = <span class="hljs-number">123</span>;<br><span class="hljs-built_in">exports</span>.b = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-built_in">exports</span>.c = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;i am c&quot;</span>);<br>&#125;<br>expotrs.d = &#123;<br>    foo: <span class="hljs-string">&#x27;bar&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>导出单个成员（拿到函数/字符串/数字等）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-string">&#x27;hello&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-string">&#x27;hello&#x27;</span>;<br><span class="hljs-comment">//后面会覆盖前面</span><br><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-title">funcyion</span>(<span class="hljs-params">x, y</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> x + y;<br>&#125;<br><br><br><span class="hljs-comment">//可以改成以下写法</span><br><span class="hljs-built_in">module</span>.exports = &#123;<br>    add: <span class="hljs-function"><span class="hljs-title">funcyion</span>(<span class="hljs-params">x, y</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> x + y;<br>&#125;,<br>    str: <span class="hljs-string">&#x27;hello&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-原理"><a href="#1-2-3-原理" class="headerlink" title="1.2.3 原理"></a>1.2.3 原理</h4><p>在node自定义模块中有一句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-built_in">exports</span> = <span class="hljs-built_in">module</span>.exports;<br></code></pre></td></tr></table></figure>
+
+<p>就是说exports等价于module.exports</p>
+<p>默认在模块文件最后都有一句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.exports;<br></code></pre></td></tr></table></figure>
+
+<p>exports是module.exports的引用，所以对exports重新赋值无意义，最后返回的是module.exports。</p>
 
             </div>
             <hr>
