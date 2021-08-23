@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="记录学习 分享交流">
+  
+  <meta name="author" content="LengAotian">
+  <meta name="keywords" content="">
+  
+  <title>【Node.JS】Express - 冷傲天的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lengat.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>冷傲天的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【Node.JS】Express">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      LengAotian
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-22 14:06" pubdate>
+        2021年8月22日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      共4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      预计阅读时长
+      59
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【Node.JS】Express</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年8月23日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="【Node-JS】Express"><a href="#【Node-JS】Express" class="headerlink" title="【Node.JS】Express"></a>【Node.JS】Express</h1><h2 id="一、Express介绍"><a href="#一、Express介绍" class="headerlink" title="一、Express介绍"></a>一、Express介绍</h2><p>Express是一个快速，简单，极简的Node.js web应用开发框架。可以轻松的构建各种web应用。例如：</p>
+<ul>
+<li>接口服务<ul>
+<li>Ghost</li>
+</ul>
+</li>
+<li>传统的web网站</li>
+<li>开发工具集成等<ul>
+<li>JSON Server</li>
+<li>webpacke-dev-server</li>
+</ul>
+</li>
+<li>……</li>
+</ul>
+<p>Express本身极简，仅提供web开发的基础功能，它通过中间件的方式集成了许许多多的外部插件来处理HTTP请求。</p>
+<ul>
+<li>body-parser：解析HTTP请求体</li>
+<li>compression：压缩HTTP响应</li>
+<li>cookie-parser：解析cookie数据</li>
+<li>cors：处理跨域资源请求</li>
+<li>morgan：HTTP请求日志记录</li>
+</ul>
+<p>但他的内部还是使用node的模块，如http模块</p>
+<p><strong>Hello World</strong></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-number">1</span>、初始化packeage.json<br><span class="hljs-built_in">npm</span> init -y<br><span class="hljs-number">2</span>、下载express<br><span class="hljs-built_in">npm</span> install express<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><br><span class="hljs-keyword">const</span> app = express();<br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;hello world&#x27;</span>)<br>&#125;)<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;running...&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="二、路由基础"><a href="#二、路由基础" class="headerlink" title="二、路由基础"></a>二、路由基础</h2><p>路由是指确定应用程序如何响应客户端对特定端点的请求，该特定端点是URI(或路径）和特定的HTTP请求方法(GET，POST等)。</p>
+<p>每个路由可以具有一个或多个处理程序函数，这些函数在匹配该路由时执行。路由定义采用以下结构:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">app.METHOD(PATH,HANDLE)<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req, res</span>)=&gt;</span>&#123;<br>    consloe.log(<span class="hljs-string">&#x27;get&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="三、请求与响应"><a href="#三、请求与响应" class="headerlink" title="三、请求与响应"></a>三、请求与响应</h2><p>Express应用使用路由回调函数的参数<code>request</code>和<code>response</code>对象来处理请求和响应的数据。</p>
+<p>Express不对Node.js 已有的特性进行二次抽象，只是在它之上扩展了web应用所需的基本功能。</p>
+<ul>
+<li>内部使用的还是 http模块E:\MyProjects\node\nodetest\03-todolist\app.js E:\MyProjects\node\nodetest\03-todolist\db.js E:\MyProjects\node\nodetest\03-todolist\db.json</li>
+<li>请求对象继承自：http.IncomingMessage</li>
+<li>响应对象继承自：http.ServerResponse</li>
+</ul>
+<p><strong>请求对象</strong></p>
+<p>req对象代表HTTP请求，并具有请求查询字符串，参数，正文，HTTP标头等的属性。</p>
+<p>按照约定，该对象始终称为req (HTTP响应为res)，但其实际名称由您正在使用的回调函数的参数确定。</p>
+<p><strong>响应对象</strong></p>
+<p>res对象表示Express应用在收到HTTP请求时发送的HTTP响应。</p>
+<p>按照约定，该对象始终称为res(并且HTTP请求为req)，但其实际名称由您正在使用的回调函数的参数确定。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">res.send()；<br>res.status();<br>res.cookie();<br>....<br></code></pre></td></tr></table></figure>
+
+<h2 id="四、todoList小案例"><a href="#四、todoList小案例" class="headerlink" title="四、todoList小案例"></a>四、todoList小案例</h2><p><img src="/images/image-20210823025102338.png" srcset="/img/loading.gif"></p>
+<p><strong>app.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">const</span> app = express();<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)<br><br><span class="hljs-keyword">const</span> &#123; getDb, saveDb &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./db&#x27;</span>)<br><br><span class="hljs-comment">// 配置解析表单请求体: application/json</span><br>app.use(express.json())<br><span class="hljs-comment">// 解析表单请求体:application/ x-www -form-urlencoded</span><br>app.use(express.urlencoded())<br><br><span class="hljs-comment">// 查询任务列表</span><br>app.get(<span class="hljs-string">&#x27;/todos&#x27;</span>, <span class="hljs-keyword">async</span>(req, res) =&gt; &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb()<br>        res.status(<span class="hljs-number">200</span>).json(db.todos)<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>        res.status(<span class="hljs-number">500</span>).json(&#123;<br>            error: error.message<br>        &#125;)<br>    &#125;<br>&#125;)<br><br><span class="hljs-comment">// 查找任务</span><br>app.get(<span class="hljs-string">&#x27;/todos/:id&#x27;</span>, <span class="hljs-keyword">async</span>(req, res) =&gt; &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb()<br>        <span class="hljs-keyword">const</span> todo = db.todos.find(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id));<br>        <span class="hljs-keyword">if</span> (!todo) &#123;<br>            res.status(<span class="hljs-number">500</span>).json(&#123;<br>                error: error.message<br>            &#125;)<br>        &#125;<br>        res.status(<span class="hljs-number">200</span>).json(todo)<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>        res.status(<span class="hljs-number">500</span>).json(&#123;<br>            error: error.message<br>        &#125;)<br>    &#125;<br>&#125;)<br><br><span class="hljs-comment">// 添加任务</span><br>app.post(<span class="hljs-string">&#x27;/todos&#x27;</span>, <span class="hljs-keyword">async</span>(req, res) =&gt; &#123;<br>   <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1、获取请求体参数</span><br>       <span class="hljs-keyword">const</span> data = req.body;<br>    <span class="hljs-comment">// 2、验证数据</span><br>    <span class="hljs-keyword">if</span> (!data) &#123;<br>        res.status(<span class="hljs-number">500</span>).json(&#123;<br>            error: error.message<br>        &#125;)<br>    &#125;<br>    <span class="hljs-comment">// 3、存储数据</span><br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb()<br>    <span class="hljs-keyword">const</span> last = db.todos[db.todos.length - <span class="hljs-number">1</span>]<br>    data.id = last ? last.id + <span class="hljs-number">1</span> : <span class="hljs-number">1</span><br>    db.todos.push(data)<br>    <span class="hljs-keyword">await</span> saveDb(db)<br>    <span class="hljs-comment">//4、发送响应</span><br>    res.status(<span class="hljs-number">200</span>).json(data)<br>   &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>        error: error.message<br>    &#125;)<br>   &#125;<br>&#125;)<br><br><span class="hljs-comment">// 修改任务</span><br>app.patch(<span class="hljs-string">&#x27;/todos/:id&#x27;</span>, <span class="hljs-keyword">async</span>(req, res) =&gt; &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1、获取数据</span><br>        <span class="hljs-keyword">const</span> todo = req.body<br>        <span class="hljs-comment">// 2、查找</span><br>        <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb()<br>        <span class="hljs-keyword">const</span> ret = db.todos.find(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id))<br>        <span class="hljs-keyword">if</span> (!ret) &#123;<br>            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">404</span>).end(<span class="hljs-string">&#x27;没有此条任务&#x27;</span>)<br>        &#125;<br>        <span class="hljs-built_in">Object</span>.assign(ret, todo)<br>        <span class="hljs-keyword">await</span> saveDb(db)<br>        res.status(<span class="hljs-number">200</span>).json(ret)<br><br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>        res.status(<span class="hljs-number">500</span>).json(&#123;<br>            error: error.message<br>        &#125;)<br>    &#125;<br>&#125;)<br><br><span class="hljs-comment">// 删除任务</span><br>app.delete(<span class="hljs-string">&#x27;/todos/:id&#x27;</span>, <span class="hljs-keyword">async</span>(req, res) =&gt; &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1、获取数据</span><br>        <span class="hljs-keyword">const</span> todo = req.body<br>        <span class="hljs-comment">// 2、查找</span><br>        <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb()<br>        <span class="hljs-keyword">const</span> index = db.todos.findIndex(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id))<br>        <span class="hljs-keyword">if</span> (index === -<span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">404</span>).end(<span class="hljs-string">&#x27;没有此条任务&#x27;</span>)<br>        &#125;<br>        db.todos.splice(index, <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">await</span> saveDb(db)<br>        res.status(<span class="hljs-number">200</span>).end(<span class="hljs-string">&#x27;删除成功&#x27;</span>)<br><br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>        res.status(<span class="hljs-number">500</span>).json(&#123;<br>            error: error.message<br>        &#125;)<br>    &#125;<br>&#125;)<br><br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;running..&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>db.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)<br><span class="hljs-keyword">const</span> &#123; promisify &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;util&#x27;</span>)<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-keyword">const</span> readFile = promisify(fs.readFile)<br><span class="hljs-keyword">const</span> writeFile = promisify(fs.writeFile)<br><br><span class="hljs-keyword">const</span> dbPath = path.join(__dirname, <span class="hljs-string">&#x27;/db.json&#x27;</span>)<br><br><span class="hljs-built_in">exports</span>.getDb = <span class="hljs-keyword">async</span> () =&gt; &#123;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> readFile(dbPath, <span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.parse(data);<br>&#125;<br><br><span class="hljs-built_in">exports</span>.saveDb =  <span class="hljs-keyword">async</span>(db) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-built_in">JSON</span>.stringify(db)<br>    <span class="hljs-keyword">await</span> writeFile(dbPath, data)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>db.json</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;todos&quot;</span>: [<br>        &#123;<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;敲代码&quot;</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">2</span>,<br>            <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;睡觉&quot;</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">3</span>,<br>            <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;敲代码&quot;</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;zll123&quot;</span>,<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">4</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;redsgb&quot;</span>,<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-number">5</span><br>        &#125;<br>    ],<br>    <span class="hljs-attr">&quot;user&quot;</span>: []<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="五、Express中间件"><a href="#五、Express中间件" class="headerlink" title="五、Express中间件"></a>五、Express中间件</h2><blockquote>
+<p>一个Express应用，就是有许多中间件完成的。</p>
+</blockquote>
+<h3 id="1、概念与功能"><a href="#1、概念与功能" class="headerlink" title="1、概念与功能"></a>1、概念与功能</h3><p><em>中间件（Middleware）</em> 是一个函数，它可以访问请求对象req、响应对象res和调用next方法的。</p>
+<p>中间件的功能包括：</p>
+<ul>
+<li>执行任何代码。</li>
+<li>修改请求和响应对象。</li>
+<li>终结请求-响应循环。</li>
+<li>调用堆栈中的下一个中间件。</li>
+</ul>
+<p>如果当前中间件没有终结请求-响应循环，则必须调用 <code>next()</code> 方法将控制权交给下一个中间件，否则请求就会挂起。</p>
+<p><strong>demo</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><br><br>app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(req.method, req.url, <span class="hljs-built_in">Date</span>.now())<br>    next()<br>&#125;)<br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;/&#x27;</span>)<br>&#125;)<br><br><br>app.get(<span class="hljs-string">&#x27;/about&#x27;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;about&#x27;</span>)<br>&#125;)<br><br>app.get(<span class="hljs-string">&#x27;/main&#x27;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;main&#x27;</span>)<br>&#125;)<br><br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;running..&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、分类"><a href="#2、分类" class="headerlink" title="2、分类"></a>2、分类</h3><p>Express 应用可使用如下几种中间件：</p>
+<ul>
+<li>应用级中间件</li>
+<li>路由级中间件</li>
+<li>错误处理中间件</li>
+<li>内置中间件</li>
+<li>第三方中间件</li>
+</ul>
+<h4 id="2-1-应用级中间件"><a href="#2-1-应用级中间件" class="headerlink" title="2.1 应用级中间件"></a>2.1 应用级中间件</h4><p><strong>不做任何限定</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now());<br>  next();<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>限定请求路径</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">app.use(<span class="hljs-string">&quot;/user/:id&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Time:&quot;</span>, <span class="hljs-built_in">Date</span>.now());<br>  next();<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>限定请求路径和方法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&quot;/user/:1&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.send(<span class="hljs-string">&quot;/user&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>配置多个处理函数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">app.use(<br>  (req, res, next) =&gt; &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now());<br>    next();<br>  &#125;,<br>  (req, res) =&gt; &#123;<br>      <span class="hljs-comment">//这个next会脱离当前处理栈</span><br>    next();<br>  &#125;<br>); <br></code></pre></td></tr></table></figure>
+
+<p><strong>next(‘route’)</strong></p>
+<p>要从路由器中间件堆栈（当前堆栈）中跳过其余中间件功能，请调用next( ‘ route ‘)将控制权传递给下一条路由。</p>
+<blockquote>
+<p>注意：next( ‘ route ‘)仅在使用app.METHOD()或<br>router.METHOD()函数加载的中间件函数中有效。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&#x27;/user/:id&#x27;</span>,<br>  (req, res, next) =&gt; &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;当前1&#x27;</span>);<br>      <span class="hljs-keyword">if</span>(req.params.id === <span class="hljs-number">0</span>)&#123;<br>          nest(<span class="hljs-string">&#x27;route&#x27;</span>);<br>      &#125;<br>    next();<br>  &#125;,<br>  (req, res,next) =&gt; &#123;<br>     res.send(<span class="hljs-string">&#x27;当前2&#x27;</span>);<br>  &#125;<br>); <br>app.get(<span class="hljs-string">&#x27;/user/:id&#x27;</span>,<br>  (req, res, next) =&gt; &#123;<br>    res.send(<span class="hljs-string">&#x27;当前3&#x27;</span>)<br>  &#125;,<br>); <br><span class="hljs-comment">//发送请求携带id为0，会接收到‘当前3’</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>中间件在数组中声明为可重复</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUrl</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.originalUrl);<br>  next();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.method);<br>  next();<br>&#125;<br><br><span class="hljs-keyword">var</span> logStuff = [logUrl, logMethod];<br><br>app.get(<span class="hljs-string">&quot;/user&quot;</span>, logStuff, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  res.send(<span class="hljs-string">&quot;User Info&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-2-路由级中间件"><a href="#2-2-路由级中间件" class="headerlink" title="2.2 路由级中间件"></a>2.2 路由级中间件</h4><p> 路由器级中间件与应用程序级中间件的工作方式相同，只不过它绑定到的实例express.Router()。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> router = express.Router()<br></code></pre></td></tr></table></figure>
+
+<p>使用router.use(）和router.METHOD(()函数加载路由器级中间件。</p>
+<blockquote>
+<p>修改todoList例子</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//app.js</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">const</span> app = express();<br><br><span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./router&quot;</span>);<br><br><span class="hljs-comment">// 配置解析表单请求体: application/json</span><br>app.use(express.json());<br><span class="hljs-comment">// 解析表单请求体:application/ x-www -form-urlencoded</span><br>app.use(express.urlencoded());<br><br><span class="hljs-comment">//4、将路由集成到Express实例</span><br>app.use(<span class="hljs-string">&quot;/todos&quot;</span>, router);<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;running..&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//router.js</span><br><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">const</span> &#123; getDb, saveDb &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./db&quot;</span>);<br><br><span class="hljs-comment">// 1、创建路由实例</span><br><span class="hljs-comment">// 路由实例相当于一个mini Express实例</span><br><span class="hljs-keyword">const</span> router = express.Router();<br><br><span class="hljs-comment">// 2、配置路由</span><br><span class="hljs-comment">// 查询任务列表</span><br>router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb();<br>    res.status(<span class="hljs-number">200</span>).json(db.todos);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>      error: error.message,<br>    &#125;);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 查找任务</span><br>router.get(<span class="hljs-string">&quot;/:id&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb();<br>    <span class="hljs-keyword">const</span> todo = db.todos.find(<br>      (todo) =&gt; todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id)<br>    );<br>    <span class="hljs-keyword">if</span> (!todo) &#123;<br>      res.status(<span class="hljs-number">500</span>).json(&#123;<br>        error: error.message,<br>      &#125;);<br>    &#125;<br>    res.status(<span class="hljs-number">200</span>).json(todo);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>      error: error.message,<br>    &#125;);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 添加任务</span><br>router.post(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 1、获取请求体参数</span><br>    <span class="hljs-keyword">const</span> data = req.body;<br>    <span class="hljs-comment">// 2、验证数据</span><br>    <span class="hljs-keyword">if</span> (!data) &#123;<br>      res.status(<span class="hljs-number">500</span>).json(&#123;<br>        error: error.message,<br>      &#125;);<br>    &#125;<br>    <span class="hljs-comment">// 3、存储数据</span><br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb();<br>    <span class="hljs-keyword">const</span> last = db.todos[db.todos.length - <span class="hljs-number">1</span>];<br>    data.id = last ? last.id + <span class="hljs-number">1</span> : <span class="hljs-number">1</span>;<br>    db.todos.push(data);<br>    <span class="hljs-keyword">await</span> saveDb(db);<br>    <span class="hljs-comment">//4、发送响应</span><br>    res.status(<span class="hljs-number">200</span>).json(data);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>      error: error.message,<br>    &#125;);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 修改任务</span><br>router.patch(<span class="hljs-string">&quot;/:id&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 1、获取数据</span><br>    <span class="hljs-keyword">const</span> todo = req.body;<br>    <span class="hljs-comment">// 2、查找</span><br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb();<br>    <span class="hljs-keyword">const</span> ret = db.todos.find(<br>      (todo) =&gt; todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id)<br>    );<br>    <span class="hljs-keyword">if</span> (!ret) &#123;<br>      <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">404</span>).end(<span class="hljs-string">&quot;没有此条任务&quot;</span>);<br>    &#125;<br>    <span class="hljs-built_in">Object</span>.assign(ret, todo);<br>    <span class="hljs-keyword">await</span> saveDb(db);<br>    res.status(<span class="hljs-number">200</span>).json(ret);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>      error: error.message,<br>    &#125;);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 删除任务</span><br>router.delete(<span class="hljs-string">&quot;/:id&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 1、获取数据</span><br>    <span class="hljs-keyword">const</span> todo = req.body;<br>    <span class="hljs-comment">// 2、查找</span><br>    <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> getDb();<br>    <span class="hljs-keyword">const</span> index = db.todos.findIndex(<br>      (todo) =&gt; todo.id === <span class="hljs-built_in">Number</span>.parseInt(req.params.id)<br>    );<br>    <span class="hljs-keyword">if</span> (index === -<span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">404</span>).end(<span class="hljs-string">&quot;没有此条任务&quot;</span>);<br>    &#125;<br>    db.todos.splice(index, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">await</span> saveDb(db);<br>    res.status(<span class="hljs-number">200</span>).end(<span class="hljs-string">&quot;删除成功&quot;</span>);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    res.status(<span class="hljs-number">500</span>).json(&#123;<br>      error: error.message,<br>    &#125;);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 3、导出路由实例</span><br><span class="hljs-built_in">module</span>.exports = router;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-3-错误处理中间件"><a href="#2-3-错误处理中间件" class="headerlink" title="2.3 错误处理中间件"></a>2.3 错误处理中间件</h4><p>错误处理中间件函数的定义方式与其他中间件函数的方式相同，但使用的参数是四个(err,req, res, next)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><br><span class="hljs-keyword">const</span> app = express();<br><br>app.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    res.status(<span class="hljs-number">200</span>).jsend(<span class="hljs-string">&quot;成功&quot;</span>);<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-comment">//如果将任何内容传递给next(）函数(字符串&quot;route &#x27;除外)，Express都会将当前请求视为错误，并且将跳过所有剩余的无错误处理路由和中间件函数。</span><br>    next(err);<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">//在所有中间件之后挂载错误处理中间件</span><br>app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;错误&quot;</span>, err);<br>  res.status(<span class="hljs-number">500</span>).json(&#123;<br>    error: err.message,<br>  &#125;);<br>&#125;);<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;running..&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>处理404内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">const</span> app = express();<br><br><span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./router&quot;</span>);<br><br><span class="hljs-comment">// 挂载路由</span><br>app.use(<span class="hljs-string">&quot;/todos&quot;</span>, router);<br><br><span class="hljs-comment">// 通常会在所有路由之后配置处理404</span><br>app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>  res.status(<span class="hljs-number">404</span>).send(<span class="hljs-string">&quot;404 Not found&quot;</span>);<br>&#125;);<br><br>app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;running..&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-4-内置中间件"><a href="#2-4-内置中间件" class="headerlink" title="2.4 内置中间件"></a>2.4 内置中间件</h4><p>express.json()：解析Content-Type为<code>application/json</code>格式的请求体</p>
+<p>express.urlencoded()：解析Content-Type为<code>application/ x-www-form-urlencoded</code>格式的请求体</p>
+<p>express.raw()：解析Content-Type为<code>application/octet-stream</code>格式的请求体</p>
+<p>express.text()：解析Content-Type为<code>text/plain</code>格式的请求体</p>
+<p> express.static()：托管静态资源文件</p>
+<h4 id="2-5-第三方中间件"><a href="#2-5-第三方中间件" class="headerlink" title="2.5 第三方中间件"></a>2.5 第三方中间件</h4><p>早期的Express内置了很多中间件。后来Express在4.x之后移除了这些内置中间件，官方把这些功能性中间件以包的形式单独提供出来。这样做的目的是为了保持Express本身极简灵活的特性，开发人员可以根据自己的需要去灵活的使用。</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://expressjs.com/en/resources/middleware.html">Express middleware (expressjs.com)</a></p>
+<h2 id="六、Express路由"><a href="#六、Express路由" class="headerlink" title="六、Express路由"></a>六、Express路由</h2><h3 id="1、路由方法"><a href="#1、路由方法" class="headerlink" title="1、路由方法"></a>1、路由方法</h3><p>路由方法是从HTTP方法之一派生的，并附加到express该类的实例。<br>以下代码是为GET和POST方法定义的到应用根目录的路由的示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// GET method route</span><br>app.get (<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>&#123;<br>res.send (<span class="hljs-string">&quot;GET request to the homepage&quot;</span>)&#125;)<br><br><span class="hljs-comment">// POST method route</span><br>app.port(<span class="hljs-string">&quot;/&quot;</span> , <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>res.send (<span class="hljs-string">&quot;POST request to the homepage&quot;</span>)&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>有一种特殊的路由方法，app.al1()，用于为所有HTTP请求方法的路径加载中间件功能。例如，无论是使用GET,POST，PUT，DELETE还是http模块支持的任何其他HTTP请求方法，都会对路由/secret的请求执行以下处理程序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">app.all( <span class="hljs-string">&#x27;/secret &#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req,res,next </span>)</span>&#123;<br>    <span class="hljs-built_in">console</span> .log(<span class="hljs-string">&#x27;all&#x27;</span>)&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、路由路径"><a href="#2、路由路径" class="headerlink" title="2、路由路径"></a>2、路由路径</h3><blockquote>
+<p>Express使用path-to-regexp来匹配路由路径</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//匹配 /user</span><br>app.get(<span class="hljs-string">&#x27;/user&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;)<br><span class="hljs-comment">//匹配 /about</span><br>app.get(<span class="hljs-string">&#x27;/about&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;about&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">//匹配 acd和abcd</span><br>app.get(<span class="hljs-string">&#x27;/ab?cd&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;ab?cd&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">//匹配 abcd，abbcd，abbbcd等</span><br>app.get(<span class="hljs-string">&#x27;/ab+cd&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;ab+cd&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">//匹配 abxxxxcd</span><br>app.get(<span class="hljs-string">&#x27;/ab*cd&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;ab*cd&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">//匹配 abe和abcde</span><br>app.get(<span class="hljs-string">&#x27;/ab(cd)?e&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;ab(cd)?e&#x27;</span>)<br>&#125;)<br><br><span class="hljs-comment">//基于正则表达式的路由路径示例:</span><br><span class="hljs-comment">//此路由路径将匹配其中带有“a”的任何内容。</span><br>app.get(<span class="hljs-string">&#x27;/a/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;/a/&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="3、路径参数"><a href="#3、路径参数" class="headerlink" title="3、路径参数"></a>3、路径参数</h3><p>路由参数被命名为URL段，用于捕获URL中在其位置处指定的值。捕获的值将填充到req.params对象中，并将路径中指定的route 参数的名称作为其各自的键。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&quot;/user/:id/edit/:name&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br><br>app.get(<span class="hljs-string">&quot;/user/:id-:name&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br><br><span class="hljs-comment">// 要更好地控制可以由route参数匹配的确切字符串，可以在括号（()）后面附加一个正则表达式:</span><br>app.get(<span class="hljs-string">&quot;/user/:id(\\d+)&quot;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="4、路由处理程序"><a href="#4、路由处理程序" class="headerlink" title="4、路由处理程序"></a>4、路由处理程序</h3><p>可以提供行为类似于中间件的多个回调函数来处理请求。唯一的例外是这些回调可能会调用next( ‘route ‘)以绕过其余的路由回调。</p>
+<p>可以使用此机制在路由上施加先决条件，然后在没有理由继续使用当前路由的情况下将控制权传递给后续路由。</p>
+<h4 id="4-1-单个回调函数处理路由"><a href="#4-1-单个回调函数处理路由" class="headerlink" title="4.1 单个回调函数处理路由"></a>4.1 单个回调函数处理路由</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&quot;/user/:id/edit/:name&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-2-多个回调函数处理路由"><a href="#4-2-多个回调函数处理路由" class="headerlink" title="4.2 多个回调函数处理路由"></a>4.2 多个回调函数处理路由</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&quot;/user/:id/edit/:name&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;user&#x27;</span>)<br>    next()<br>&#125;,<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-3-回调函数数组处理路由"><a href="#4-3-回调函数数组处理路由" class="headerlink" title="4.3 回调函数数组处理路由"></a>4.3 回调函数数组处理路由</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUrl</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.originalUrl);<br>  next();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.method);<br>  next();<br>&#125;<br><br><span class="hljs-keyword">var</span> logStuff = [logUrl, logMethod];<br><br>app.get(<span class="hljs-string">&quot;/user&quot;</span>, logStuff);<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-4-独立功能和数组结合处理路由"><a href="#4-4-独立功能和数组结合处理路由" class="headerlink" title="4.4 独立功能和数组结合处理路由"></a>4.4 独立功能和数组结合处理路由</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUrl</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.originalUrl);<br>  next();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(req.method);<br>  next();<br>&#125;<br><br><span class="hljs-keyword">var</span> logStuff = [logUrl, logMethod];<br><br>app.get(<span class="hljs-string">&quot;/user&quot;</span>, logStuff, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) </span>&#123;<br>  res.send(<span class="hljs-string">&quot;User Info&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="5、应对方法"><a href="#5、应对方法" class="headerlink" title="5、应对方法"></a>5、应对方法</h3><p>res下表中响应对象(）上的方法可以将响应发送到客户端，并终止请求-响应周期。如果没有从路由处理程序调用这些方法，则客户端请求将被挂起。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>res.download()</td>
+<td>提示要下载的文件。</td>
+</tr>
+<tr>
+<td>重发()</td>
+<td>结束响应过程。</td>
+</tr>
+<tr>
+<td>res.json()</td>
+<td>发送JSON响应。</td>
+</tr>
+<tr>
+<td>res.jsonp()</td>
+<td>发送带有JSONP支持的JSON格式数据响应</td>
+</tr>
+<tr>
+<td>res.redirect()</td>
+<td>重定向请求。</td>
+</tr>
+<tr>
+<td>res.render()</td>
+<td>渲染视图模板。</td>
+</tr>
+<tr>
+<td>res.send()</td>
+<td>发送各种类型的响应。</td>
+</tr>
+<tr>
+<td>res.sendFile()</td>
+<td>将文件作为八位字节流发送。</td>
+</tr>
+<tr>
+<td>res.sendStatus()</td>
+<td>设置响应状态代码，并将其字符串表示形式发送为响应正文。</td>
+</tr>
+</tbody></table>
+<h3 id="6、app-route"><a href="#6、app-route" class="headerlink" title="6、app.route()"></a>6、app.route()</h3><p>使用app.route()来为路由路径创建可链接的路由处理程序app.route()。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&quot;/user&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;).post (<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;).put (<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.send(<span class="hljs-string">&#x27;user&#x27;</span>)<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="7、快速路由器"><a href="#7、快速路由器" class="headerlink" title="7、快速路由器"></a>7、快速路由器</h3><p>使用express.Router该类创建模块化的，可安装的路由处理程序。</p>
+<p>一个Router实例是一个完整的中间件和路由系统；因此，它通常被称为“迷你应用程序”。</p>
+<p>[详见2.2](# 2.2 路由级中间件)</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Node-JS%E5%AD%A6%E4%B9%A0/">Node.JS学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Node/">Node</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/21/%E3%80%90MarkDown%E3%80%91%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">【MarkDown】使用笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content"> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+ 
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020029200号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
