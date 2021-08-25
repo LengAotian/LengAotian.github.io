@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      共843 字
+      共845 字
     </span>
   
 
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月12日 晚上
+                  本文最后更新于：2021年8月25日 晚上
                 
               </p>
             
@@ -276,7 +276,7 @@
 <p>于是找到以下的方法</p>
 <p>el-menu修改这两处</p>
 <p><img src="/images/image-20210712195544183.png" srcset="/img/loading.gif"></p>
-<p>el-menu-item，将index改为路由对应的name，使用:route代替原来的click时间</p>
+<p>el-menu-item，将index改为路由对应的name，使用:route代替原来的click点击事件。</p>
 <p><img src="/images/image-20210712195741906.png" srcset="/img/loading.gif"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class&#x3D;&quot;nav&quot;&gt;<br>    &lt;div class&#x3D;&quot;line&quot;&gt;&lt;&#x2F;div&gt;<br>    &lt;el-menu<br>      :default-active&#x3D;&quot;$route.name&quot;<br>      :router&#x3D;&quot;true&quot;<br>      class&#x3D;&quot;el-menu-demo&quot;<br>      mode&#x3D;&quot;horizontal&quot;<br>      @select&#x3D;&quot;handleSelect&quot;<br>      background-color&#x3D;&quot;#336699&quot;<br>      text-color&#x3D;&quot;#fff&quot;<br>      active-text-color&#x3D;&quot;#CCCC33&quot;<br>    &gt;<br>      &lt;div class&#x3D;&quot;navleft&quot;&gt;<br>        &lt;el-menu-item index&#x3D;&quot;ShopMana&quot; :route&#x3D;&quot;&#123;path:&#39;&#x2F;shopmana&#39;&#125;&quot;&gt;<br>          &lt;i class&#x3D;&quot;el-icon-s-grid&quot;&gt;&lt;&#x2F;i&gt;首页<br>        &lt;&#x2F;el-menu-item&gt;<br>        &lt;el-menu-item index&#x3D;&quot;People&quot; :route&#x3D;&quot;&#123;path:&#39;&#x2F;people&#39;&#125;&quot;&gt;<br>          &lt;i class&#x3D;&quot;el-icon-apple&quot;&gt;&lt;&#x2F;i&gt;店员管理<br>        &lt;&#x2F;el-menu-item&gt;<br>        &lt;el-menu-item index&#x3D;&quot;Goods&quot; :route&#x3D;&quot;&#123;path:&#39;&#x2F;goods&#39;&#125;&quot;&gt;<br>          &lt;i class&#x3D;&quot;el-icon-pear&quot;&gt;&lt;&#x2F;i&gt;货物管理<br>        &lt;&#x2F;el-menu-item&gt;<br>        &lt;el-menu-item index&#x3D;&quot;Order&quot; :route&#x3D;&quot;&#123;path:&#39;&#x2F;order&#39;&#125;&quot;&gt;<br>          &lt;i class&#x3D;&quot;el-icon-orange&quot;&gt;&lt;&#x2F;i&gt;订单管理<br>        &lt;&#x2F;el-menu-item&gt;<br>      &lt;&#x2F;div&gt;<br>    &lt;&#x2F;el-menu&gt;<br>  &lt;&#x2F;div&gt;<br>&lt;&#x2F;template&gt;<br><br>&lt;script&gt;<br>import service from &quot;..&#x2F;api&#x2F;index&quot;;<br>export default &#123;<br>    data() &#123;<br>        return &#123;<br>            quitVisible: false,<br>            activeIndex: &quot;1&quot;,<br>            activeIndex2: &quot;1&quot;<br>        &#125;;<br>    &#125;,<br>    methods: &#123;<br>        ask() &#123;<br>            this.quitVisible &#x3D; true;<br>        &#125;,<br>        cancel() &#123;<br>            this.quitVisible &#x3D; false;<br>        &#125;,<br>        handleSelect(key, keyPath) &#123;<br>            console.log(key, keyPath);<br>        &#125;<br>    &#125;<br>&#125;;<br>&lt;&#x2F;script&gt;<br><br>&lt;style scoped&gt;<br>&lt;&#x2F;style&gt;<br></code></pre></td></tr></table></figure>
 
